@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
         }
 
         // Visible in Vercel > Logs, so you can see the webhook doing its job
-        console.log(`[Razorpay Webhook] ${event}: order #${order.order_number} ${result.applied ? 'marked PAID by webhook' : 'was already paid (browser verify got there first)'}`)
+        console.log(`[Razorpay Webhook] ${event}: order #${order.order_number} ${result.applied ? 'marked PAID by webhook' : 'was already paid (browser verify or the other webhook event got there first)'}`)
         if (result.applied) refreshOrderPages()
         return NextResponse.json({ received: true, applied: result.applied })
       }
